@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAMN CUSTOMS NP | Premium Custom Kicks</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #0d0d0d;
+            --text-muted: #666666;
+            --accent-red: #e8001d;
+            --accent-red-hover: #cc0019;
+            --accent-orange: #f5a623;
+            --accent-gold: var(--accent-orange);
+            --card-bg: #f8f8f8;
+            --border-color: #e0e0e0;
+            --tertiary-bg: #f4f4f4;
+            
+            --font-head: 'Bebas Neue', sans-serif;
+            --font-body: 'Syne', sans-serif;
+            
+            --transition: all 0.3s ease;
+        }
+
+        /* RESET & BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* CSS Grain Texture */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        h1, h2, h3, h4, .bebas {
+            font-family: var(--font-head);
+            letter-spacing: 1px;
+            font-weight: normal;
+            text-transform: uppercase;
+        }
+
+        a { color: inherit; text-decoration: none; transition: var(--transition); }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* LOADER */
+        #page-loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--bg-color);
+            z-index: 10000;
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        #page-loader h1 { font-size: 5rem; color: var(--text-color); }
+        .hidden { opacity: 0; pointer-events: none; }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 1rem 2rem;
+            font-family: var(--font-head);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+        }
+        .btn-black { background: #111111; color: #ffffff; }
+        .btn-black:hover { background: #000000; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .btn-red { background: var(--accent-red); color: #fff; }
+        .btn-red:hover { background: var(--accent-red-hover); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(232,0,29,0.3); }
+        .btn-outline { background: transparent; border: 2px solid var(--text-color); color: var(--text-color); }
+        .btn-outline:hover { background: var(--text-color); color: var(--bg-color); }
+        
+        /* 1. ANNOUNCEMENT BAR */
+        .announcement-bar {
+            background-color: var(--accent-red);
+            color: #fff;
+            padding: 0.5rem 0;
+            font-family: var(--font-head);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .marquee {
+            display: inline-block;
+            animation: scroll-left 25s linear infinite;
+        }
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* 2. NAVBAR */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .navbar.scrolled {
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 2rem; }
+        .logo span { color: var(--accent-red); }
+        
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-red); }
+        
+        .nav-icons { display: flex; gap: 1.5rem; align-items: center; font-size: 1.2rem; }
+        .nav-icons a:hover { color: var(--accent-red); transform: scale(1.1); }
+        .cart-icon { position: relative; }
+        .cart-badge {
+            position: absolute; top: -8px; right: -8px;
+            background: var(--accent-red);
+            font-size: 0.7rem; font-family: var(--font-body);
+            width: 16px; height: 16px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+        
+        .hamburger { display: none; cursor: pointer; font-size: 1.5rem; }
+
+        /* 3. HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .split-slider-container {
+            position: relative;
+            flex: 1;
+            width: 100%;
+            overflow: hidden;
+            background: #fff;
+            touch-action: none;
+        }
+        .split-side {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        .split-right {
+            left: auto;
+            right: 0;
+            width: 50%;
+            border-left: 2px solid var(--accent-red);
+            /* z-index is higher so it sits on top, but bounded by width */
+            z-index: 5;
+        }
+        
+        .split-bg {
+            position: absolute;
+            top: 0;
+            width: 100vw;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+        .split-left .split-bg { left: 0; }
+        .split-right .split-bg { right: 0; left: auto; }
+        .split-label {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: clamp(4rem, 8vw, 10rem);
+            line-height: 1;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .left-label {
+            right: calc(50vw + 50px); /* rough positioning based on center initially */
+            color: rgba(255, 255, 255, 0.8);
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        /* Make right label relative to the viewport so it stays put when split-right resizes */
+        .right-label {
+            left: calc(50vw + 50px);
+            color: var(--accent-red);
+            text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+            /* Reset absolute positioning relative to viewport since parent .split-right is variable width */
+            position: fixed; /* Actually fixed or a pseudo element trick works better, let's use fixed or just keep it left aligned */
+        }
+        
+        /* Better handle right label positioning */
+        .split-right .right-label {
+            position: absolute;
+            left: 5vw;
+            width: 100vw; /* Allows text to not wrap early */
+        }
+        .split-left .left-label {
+            position: absolute;
+            right: 5vw;
+            width: 100vw;
+            text-align: right;
+        }
+
+        .split-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 1.5rem;
+            cursor: ew-resize; z-index: 20;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5), inset 0 0 0 4px rgba(255,255,255,0.3);
+            transition: transform 0.1s;
+        }
+        .split-handle:active { transform: translate(-50%, -50%) scale(0.9); }
+        
+        .split-slider-container.animating .split-right,
+        .split-slider-container.animating .split-handle {
+            transition: width 1s cubic-bezier(0.25, 1, 0.5, 1), left 1s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        .hero-bottom-content {
+            background: var(--tertiary-bg);
+            padding: 2rem 5%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            border-top: 1px solid var(--accent-red);
+        }
+        .hero-bottom-content h2 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            margin: 0;
+        }
+
+        /* 4. TRUST BAR */
+        .trust-bar {
+            background-color: #111;
+            color: var(--accent-gold);
+            padding: 1.5rem 0;
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            display: flex; overflow: hidden; white-space: nowrap;
+            border-top: 1px solid #222; border-bottom: 1px solid #222;
+        }
+
+        /* Shared Section Styles */
+        .section-pad { padding: 8rem 0; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-size: 3.5rem; margin-bottom: 1rem; }
+        .section-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* 5. SHOP GRID */
+        .shop-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+        }
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 4px; overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(232,0,29,0.3);
+            box-shadow: 0 15px 30px rgba(232,0,29,0.1);
+        }
+        .img-wrap { position: relative; aspect-ratio: 1/1; overflow: hidden; background: #000; }
+        .img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; position: absolute; top:0; left:0; }
+        
+        .card-img-custom { z-index: 1; }
+        .card-img-base { z-index: 2; opacity: 0; transition: opacity 0.4s ease; }
+        .img-wrap.show-base .card-img-base { opacity: 1; }
+        
+        .card-badge {
+            position: absolute; top: 1rem; left: 1rem;
+            background: var(--accent-red); color: white;
+            font-family: var(--font-head); font-size: 0.9rem; padding: 0.2rem 0.6rem;
+            z-index: 5; border-radius: 2px; letter-spacing: 1px;
+        }
+        
+        .toggle-base-btn {
+            position: absolute; top: 1rem; right: 1rem;
+            width: 36px; height: 36px; border-radius: 50%;
+            background: rgba(0,0,0,0.6); color: white; border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer; z-index: 5; transition: var(--transition);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .toggle-base-btn:hover { background: var(--accent-red); }
+        .toggle-base-btn.active { background: white; color: black; }
+        
+        .img-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(232,0,29,0.8), transparent);
+            opacity: 0; transition: var(--transition);
+            display: flex; align-items: flex-end; justify-content: center; padding: 2rem;
+            z-index: 3; pointer-events: none;
+        }
+        .product-card:hover .img-wrap img { transform: scale(1.05); }
+        .product-card:hover .img-overlay { opacity: 1; pointer-events: all; }
+        .img-overlay .btn { padding: 0.8rem 1.5rem; font-size: 1rem; width: 100%; }
+        
+        .product-info { padding: 1.5rem; }
+        .base-shoe { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; display: block; }
+        .product-name { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .hover-text-price { font-size: 0.8rem; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
+
+        /* 6. CATEGORY TILES */
+        .category-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+        }
+        .cat-tile {
+            position: relative; height: 250px;
+            background: #111; border-radius: 4px; overflow: hidden;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            text-align: center;
+            padding: 2rem;
+            text-decoration: none; /* keep link looking like a tile */
+        }
+        .cat-tile:not(.cat-custom):hover {
+            transform: translateY(-5px);
+            border-color: rgba(232,0,29,0.5);
+            box-shadow: 0 10px 20px rgba(232,0,29,0.15);
+        }
+        .cat-tile h3 {
+            position: relative; z-index: 2; margin: 0; font-size: 2rem; letter-spacing: 2px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+        }
+        
+        .cat-overlay {
+            position: absolute; inset: 0; z-index: 1;
+            opacity: 0.7; transition: opacity 0.3s;
+        }
+        .cat-tile:hover .cat-overlay { opacity: 0.9; }
+
+        /* Anime-specific gradient overlays */
+        .cat-dbz .cat-overlay { background: linear-gradient(135deg, rgba(245,166,35,0.4), rgba(28,69,149,0.5)); }
+        .cat-naruto .cat-overlay { background: linear-gradient(135deg, rgba(235,107,34,0.4), rgba(10,10,10,0.8)); }
+        .cat-op .cat-overlay { background: linear-gradient(135deg, rgba(217,32,39,0.4), rgba(245,166,35,0.4)); }
+        .cat-ds .cat-overlay { background: linear-gradient(135deg, rgba(30,135,76,0.4), rgba(15,15,15,0.8)); }
+        .cat-aot .cat-overlay { background: linear-gradient(135deg, rgba(100,50,30,0.5), rgba(15,15,15,0.8)); }
+
+        /* Custom / Your Design Tile: Solid Red */
+        .cat-custom {
+            background: var(--accent-red);
+            border-color: var(--accent-red);
+        }
+        .cat-custom:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(232,0,29,0.3);
+        }
+
+        /* 7. PRICING */
+        /* Updated Section Specifics */
+        #pricing { background: #111; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem; }
+        .price-card {
+            background: var(--bg-color); padding: 3rem 2rem;
+            border-radius: 4px; border: 1px solid var(--border-color);
+            position: relative; transition: var(--transition);
+        }
+        .price-card:hover { border-color: var(--accent-gold); }
+        .price-card.popular { border-color: var(--accent-red); box-shadow: 0 10px 30px rgba(232,0,29,0.1); transform: translateY(-10px); }
+        .price-card.popular::before {
+            content: 'MOST POPULAR';
+            position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%);
+            background: var(--accent-red); color: #fff;
+            padding: 0.3rem 1rem; font-family: var(--font-head); letter-spacing: 1px; font-size: 0.9rem;
+        }
+        .price-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .price-card h3 { font-size: 2rem; margin-bottom: 0.5rem; color: var(--accent-gold); }
+        .price-card.popular h3 { color: var(--accent-red); }
+        .price-val { font-size: 2.5rem; font-family: var(--font-head); margin-bottom: 1.5rem; }
+        .price-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; }
+        .price-card ul { list-style: disc; padding-left: 1.2rem; color: #ccc; font-size: 0.9rem; }
+        
+        .pricing-cta { text-align: center; background: var(--card-bg); padding: 3rem; border-radius: 4px; }
+        .pricing-cta h3 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+
+        /* 8. PROCESS */
+        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+        .step-card { text-align: center; padding: 2rem 1rem; }
+        .step-num { font-size: 5rem; color: var(--accent-red); opacity: 0.2; line-height: 1; margin-bottom: 1rem; font-family: var(--font-head); }
+        .step-card h3 { font-size: 1.8rem; margin-bottom: 1rem; }
+        .step-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* 9. SOCIAL PROOF */
+        .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .review-card { background: var(--bg-color); padding: 2.5rem; border-radius: 4px; border: 1px solid var(--border-color); box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
+        .stars { color: var(--accent-red); margin-bottom: 1rem; font-size: 0.9rem; }
+        .quote-icon { color: var(--accent-gold); font-size: 2rem; opacity: 0.3; margin-bottom: 1rem; }
+        .review-text { font-size: 1rem; font-style: italic; margin-bottom: 2rem; line-height: 1.8; }
+        .reviewer { display: flex; align-items: center; gap: 1rem; }
+        .avatar { width: 40px; height: 40px; background: #e0e0e0; color: #0d0d0d; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-size: 1.2rem; }
+        .reviewer-info h4 { font-size: 1.2rem; font-family: var(--font-body); font-weight: 700; text-transform: none; letter-spacing: 0; }
+        .reviewer-info p { font-size: 0.8rem; color: var(--text-muted); }
+
+        /* 10. ORDER FORM */
+        #order { background: #111; }
+        .form-container { max-width: 700px; margin: 0 auto; background: var(--bg-color); padding: 4rem; border-radius: 4px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid var(--border-color); }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; font-family: var(--font-head); font-size: 1.2rem; letter-spacing: 1px; color: var(--text-muted); }
+        input, select, textarea {
+            width: 100%; background: #1a1a1a; border: 1px solid var(--border-color); color: #fff;
+            padding: 1rem; font-family: var(--font-body); font-size: 1rem; border-radius: 2px;
+            transition: var(--transition);
+        }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent-red); background: #222; }
+        textarea { resize: vertical; min-height: 120px; }
+        .submit-btn { width: 100%; margin-top: 1rem; }
+        #success-msg { display: none; text-align: center; padding: 3rem; border: 1px solid var(--accent-red); background: rgba(232,0,29,0.05); }
+        #success-msg h3 { font-size: 2.5rem; color: var(--accent-red); margin-bottom: 1rem; }
+
+        /* 11. INSTAGRAM */
+        .insta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; margin-bottom: 3rem; }
+        .insta-item { aspect-ratio: 1/1; position: relative; overflow: hidden; }
+        .insta-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .insta-overlay { position: absolute; inset: 0; background: rgba(232,0,29,0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: var(--transition); font-family: var(--font-head); font-size: 1.2rem; letter-spacing: 1px; color: #fff; }
+        .insta-item:hover img { transform: scale(1.1); }
+        .insta-item:hover .insta-overlay { opacity: 1; }
+        .insta-action { text-align: center; }
+
+        /* 12. FOOTER */
+        footer { background: #000; padding: 4rem 0 2rem; border-top: 1px solid #1a1a1a; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 2fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+        .footer-logo { font-size: 2.5rem; margin-bottom: 1rem; }
+        .footer-logo span { color: var(--accent-red); }
+        .footer-tagline { color: var(--text-muted); font-size: 1rem; }
+        .footer-links { display: flex; gap: 3rem; }
+        .footer-col h4 { font-family: var(--font-head); font-size: 1.5rem; margin-bottom: 1.5rem; letter-spacing: 1px; }
+        .footer-col ul { display: flex; flex-direction: column; gap: 0.8rem; color: var(--text-muted); }
+        .footer-col a:hover { color: var(--accent-red); }
+        .social-icons { display: flex; gap: 1rem; }
+        .social-icons a { width: 40px; height: 40px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: var(--transition); }
+        .social-icons a:hover { background: var(--accent-red); transform: translateY(-3px); }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid #1a1a1a; color: #666; font-size: 0.9rem; }
+
+        /* FLOATING ELEMENTS */
+        .float-whatsapp {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 60px; height: 60px; background: #25D366; color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; z-index: 999; box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+            animation: pulse-green 2s infinite; transition: transform 0.3s;
+        }
+        .float-whatsapp:hover { transform: scale(1.1); }
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(37,211,102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37,211,102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37,211,102, 0); }
+        }
+
+        .scroll-top {
+            position: fixed; bottom: 30px; left: 30px;
+            width: 50px; height: 50px; background: rgba(26,26,26,0.8); border: 1px solid var(--accent-red); color: var(--accent-red);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; z-index: 999; cursor: pointer; transition: var(--transition);
+            opacity: 0; pointer-events: none; transform: translateY(20px);
+        }
+        .scroll-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+        .scroll-top:hover { background: var(--accent-red); color: white; }
+
+        /* ANIMATIONS (Scroll Fade) */
+        .fade-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 4.5rem; }
+            .shop-grid, .pricing-grid, .review-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-grid { grid-template-columns: repeat(2, 1fr); }
+            .insta-grid { grid-template-columns: repeat(3, 1fr); }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-links { gap: 2rem; }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links, .nav-icons { display: none; }
+            .hamburger { display: block; }
+            .hero-container { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+            .hero-content p { max-width: 100%; margin: 1.5rem auto; }
+            .hero-actions { justify-content: center; }
+            .hero-art { height: 300px; }
+            .section-title { font-size: 2.8rem; }
+            .category-grid { grid-template-columns: repeat(2, 1fr); }
+            .form-container { padding: 2rem; }
+            
+            /* Mobile Menu Drawer */
+            .mobile-menu {
+                position: fixed; top: 0; right: -100%; width: 80%; max-width: 300px; height: 100vh;
+                background: #ffffff; z-index: 2000; padding: 5rem 2rem;
+                transition: right 0.4s ease; border-left: 1px solid var(--border-color);
+            }
+            .mobile-menu.open { right: 0; }
+            .mobile-menu a { display: block; font-family: var(--font-head); font-size: 2rem; margin-bottom: 1.5rem; color: #0d0d0d; }
+            .close-menu { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; cursor: pointer; color: #0d0d0d; }
+            .overlay {
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0,0,0,0.8); z-index: 1500;
+                opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+            }
+            .overlay.open { opacity: 1; pointer-events: all; }
+        }
+        
+        @media (max-width: 480px) {
+            .shop-grid, .pricing-grid, .review-grid, .process-grid, .category-grid { grid-template-columns: 1fr; }
+            .insta-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-content h1 { font-size: 3.5rem; }
+            .announcement-bar { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 0. LOADER -->
+    <div id="page-loader">
+        <h1 class="bebas">DAMN CUSTOMS</h1>
+    </div>
+
+    <!-- 1. ANNOUNCEMENT BAR -->
+    <div class="announcement-bar">
+        <div class="marquee">
+            <span>🔥 PRE-ORDER ONLY — DM US YOUR IDEA ✦ PRICE BASED ON YOUR DESIGN ✦ HAND-PAINTED IN KATHMANDU 🇳🇵 ✦ FREE DELIVERY IN VALLEY ✦ 🔥 PRE-ORDER ONLY — DM US YOUR IDEA ✦ PRICE BASED ON YOUR DESIGN ✦ HAND-PAINTED IN KATHMANDU 🇳🇵 ✦ FREE DELIVERY IN VALLEY ✦</span>
+        </div>
+    </div>
+
+    <!-- 2. NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo bebas">DAMN <span>CUSTOMS NP</span></a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="shop.html" class="active">Shop</a></li>
+                <li><a href="about.html">How It Works</a></li>
+                <li><a href="custom-order.html">Custom Order</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            
+            <div class="nav-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/977980000000"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Drawer -->
+    <div class="overlay" id="overlay"></div>
+    <div class="mobile-menu" id="mobile-menu">
+        <i class="fas fa-times close-menu" id="close-menu"></i>
+        <a href="index.html" class="mobile-link">Home</a>
+        <a href="shop.html" class="mobile-link">Shop</a>
+        <a href="about.html" class="mobile-link">How It Works</a>
+        <a href="custom-order.html" class="mobile-link">Custom Order</a>
+        <a href="contact.html" class="mobile-link">Contact</a>
+        <div style="margin-top: 3rem; display: flex; gap: 1rem; font-size: 1.5rem;">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </div>
+
+    
+    <main style="padding-top: 100px;">
+        <section class="section-pad">
+            <div class="container" style="text-align: center;">
+                <h1 class="bebas" style="font-size: 5rem; margin-bottom: 2rem;">THE SHOP</h1>
+                <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin: 0 auto 3rem;">
+                    Browse our past work. All designs can be remixed or used as inspiration for your own pair.
+                </p>
+                <div class="shop-grid" style="text-align: left;">
+                    <!-- Copied grid items from index -->
+                    
+                    <!-- Product Card 1 -->
+                    <div class="product-card fade-up">
+                        <div class="img-wrap">
+                            <img src="https://picsum.photos/seed/kicks1/600/600" alt="AF1 x Goku SSJ God" class="card-img-custom">
+                            <img src="https://picsum.photos/seed/kicks1_base/600/600" alt="Nike AF1 Base" class="card-img-base">
+                            <div class="card-badge">ANIME CUSTOM</div>
+                            <button class="toggle-base-btn" title="Toggle Base/Custom"><i class="fas fa-exchange-alt"></i></button>
+                            <div class="img-overlay">
+                                <a href="custom-order.html" class="btn btn-red">GET THIS LOOK</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="base-shoe">Nike Air Force 1</span>
+                            <h3 class="product-name bebas">AF1 x Goku SSJ God</h3>
+                            <p class="hover-text-price">QUOTED ON REQUEST — DM FOR PRICE</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 2 -->
+                    <div class="product-card fade-up" style="transition-delay: 0.1s;">
+                        <div class="img-wrap">
+                            <img src="https://picsum.photos/seed/kicks2/600/600" alt="AF1 x Vegeta Broly" class="card-img-custom">
+                            <img src="https://picsum.photos/seed/kicks2_base/600/600" alt="Nike AF1 Base" class="card-img-base">
+                            <div class="card-badge">ANIME CUSTOM</div>
+                            <button class="toggle-base-btn" title="Toggle Base/Custom"><i class="fas fa-exchange-alt"></i></button>
+                            <div class="img-overlay">
+                                <a href="custom-order.html" class="btn btn-red">GET THIS LOOK</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="base-shoe">Nike Air Force 1</span>
+                            <h3 class="product-name bebas">AF1 x Vegeta Broly</h3>
+                            <p class="hover-text-price">QUOTED ON REQUEST — DM FOR PRICE</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="product-card fade-up" style="transition-delay: 0.2s;">
+                        <div class="img-wrap">
+                            <img src="https://picsum.photos/seed/kicks3/600/600" alt="Jordan 1 x Itachi" class="card-img-custom">
+                            <img src="https://picsum.photos/seed/kicks3_base/600/600" alt="Jordan 1 Base" class="card-img-base">
+                            <div class="card-badge">ANIME CUSTOM</div>
+                            <button class="toggle-base-btn" title="Toggle Base/Custom"><i class="fas fa-exchange-alt"></i></button>
+                            <div class="img-overlay">
+                                <a href="custom-order.html" class="btn btn-red">GET THIS LOOK</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="base-shoe">Air Jordan 1 High</span>
+                            <h3 class="product-name bebas">Jordan 1 x Itachi</h3>
+                            <p class="hover-text-price">QUOTED ON REQUEST — DM FOR PRICE</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 4 -->
+                    <div class="product-card fade-up">
+                        <div class="img-wrap">
+                            <img src="https://picsum.photos/seed/kicks4/600/600" alt="Converse x Demon Slayer" class="card-img-custom">
+                            <img src="https://picsum.photos/seed/kicks4_base/600/600" alt="Converse Base" class="card-img-base">
+                            <div class="card-badge">ANIME CUSTOM</div>
+                            <button class="toggle-base-btn" title="Toggle Base/Custom"><i class="fas fa-exchange-alt"></i></button>
+                            <div class="img-overlay">
+                                <a href="custom-order.html" class="btn btn-red">GET THIS LOOK</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="base-shoe">Converse Chuck 70</span>
+                            <h3 class="product-name bebas">Converse x Demon Slayer</h3>
+                            <p class="hover-text-price">QUOTED ON REQUEST — DM FOR PRICE</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 5 -->
+                    <div class="product-card fade-up" style="transition-delay: 0.1s;">
+                        <div class="img-wrap">
+                            <img src="https://picsum.photos/seed/kicks5/600/600" alt="Vans x One Piece" class="card-img-custom">
+                            <img src="https://picsum.photos/seed/kicks5_base/600/600" alt="Vans Base" class="card-img-base">
+                            <div class="card-badge">ANIME CUSTOM</div>
+                            <button class="toggle-base-btn" title="Toggle Base/Custom"><i class="fas fa-exchange-alt"></i></button>
+                            <div class="img-overlay">
+                                <a href="custom-order.html" class="btn btn-red">GET THIS LOOK</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="base-shoe">Vans Old Skool</span>
+                            <h3 class="product-name bebas">Vans x One Piece</h3>
+                            <p class="hover-text-price">QUOTED ON REQUEST — DM FOR PRICE</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 6 -->
+                    <div class="product-card fade-up" style="transition-delay: 0.2s;">
+                        <div class="img-wrap">
+                            <img src="https://picsum.photos/seed/kicks6/600/600" alt="AF1 x Attack on Titan" class="card-img-custom">
+                            <img src="https://picsum.photos/seed/kicks6_base/600/600" alt="AF1 Base" class="card-img-base">
+                            <div class="card-badge">ANIME CUSTOM</div>
+                            <button class="toggle-base-btn" title="Toggle Base/Custom"><i class="fas fa-exchange-alt"></i></button>
+                            <div class="img-overlay">
+                                <a href="custom-order.html" class="btn btn-red">GET THIS LOOK</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="base-shoe">Nike Air Force 1</span>
+                            <h3 class="product-name bebas">AF1 x Attack on Titan</h3>
+                            <p class="hover-text-price">QUOTED ON REQUEST — DM FOR PRICE</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 7 -->
+                    <div class="product-card fade-up">
+                        <div class="img-wrap">
+                            <img src="https://picsum.photos/seed/kicks7/600/600" alt="Jordan 1 x Naruto vs Sasuke" class="card-img-custom">
+                            <img src="https://picsum.photos/seed/kicks7_base/600/600" alt="Jordan 1 Base" class="card-img-base">
+                            <div class="card-badge">ANIME CUSTOM</div>
+                            <button class="toggle-base-btn" title="Toggle Base/Custom"><i class="fas fa-exchange-alt"></i></button>
+                            <div class="img-overlay">
+                                <a href="custom-order.html" class="btn btn-red">GET THIS LOOK</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="base-shoe">Air Jordan 1 Low</span>
+                            <h3 class="product-name bebas">Jordan 1 x Naruto vs Sasuke</h3>
+                            <p class="hover-text-price">QUOTED ON REQUEST — DM FOR PRICE</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 8 -->
+                    <div class="product-card fade-up" style="transition-delay: 0.1s;">
+                        <div class="img-wrap">
+                            <img src="https://picsum.photos/seed/kicks8/600/600" alt="AF1 x Dragon Ball Z Split" class="card-img-custom">
+                            <img src="https://picsum.photos/seed/kicks8_base/600/600" alt="Nike AF1 Base" class="card-img-base">
+                            <div class="card-badge">ANIME CUSTOM</div>
+                            <button class="toggle-base-btn" title="Toggle Base/Custom"><i class="fas fa-exchange-alt"></i></button>
+                            <div class="img-overlay">
+                                <a href="custom-order.html" class="btn btn-red">GET THIS LOOK</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="base-shoe">Nike Air Force 1</span>
+                            <h3 class="product-name bebas">AF1 x Dragon Ball Z Split</h3>
+                            <p class="hover-text-price">QUOTED ON REQUEST — DM FOR PRICE</p>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- 12. FOOTER -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo bebas">DAMN <span>CUSTOMS NP</span></div>
+                    <p class="footer-tagline">Every pair is a one-of-a-kind original.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="shop.html">Shop</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Orders</h4>
+                        <ul>
+                            <li><a href="custom-order.html">Custom Order</a></li>
+                            <li><a href="about.html">How It Works</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Help</h4>
+                        <ul>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                Made with paint & passion in Kathmandu, Nepal 🇳🇵 | &copy; 2025 DAMN CUSTOMS NP. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING ELEMENTS -->
+    <a href="https://wa.me/977980000000" class="float-whatsapp" title="WhatsApp Us">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <div class="scroll-top" id="scrollTop" title="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Loader Logic
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('page-loader');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    
+                    // Trigger hint animation for slider after loader is gone
+                    const sliderContainer = document.getElementById('splitSlider');
+                    if(sliderContainer) {
+                        sliderContainer.classList.add('animating');
+                        const splitRight = document.getElementById('splitRight');
+                        const splitHandle = document.getElementById('splitHandle');
+                        
+                        // Move to 70% (meaning right side is 30% wide, handle at 70%)
+                        splitRight.style.width = '30%';
+                        splitHandle.style.left = '70%';
+                        
+                        setTimeout(() => {
+                            splitRight.style.width = '50%';
+                            splitHandle.style.left = '50%';
+                            
+                            setTimeout(() => {
+                                sliderContainer.classList.remove('animating');
+                            }, 1000);
+                        }, 1000);
+                    }
+                }, 500); 
+            }, 1800);
+        });
+
+        // Split Slider Logic
+        const sliderContainer = document.getElementById('splitSlider');
+        const splitRight = document.getElementById('splitRight');
+        const splitHandle = document.getElementById('splitHandle');
+        
+        let isDragging = false;
+        
+        function moveSplit(pageX) {
+            if(!sliderContainer) return;
+            const containerRect = sliderContainer.getBoundingClientRect();
+            let x = pageX - containerRect.left;
+            x = Math.max(0, Math.min(x, containerRect.width));
+            
+            const percent = (x / containerRect.width) * 100;
+            const rightWidthPercent = 100 - percent;
+            
+            splitRight.style.width = rightWidthPercent + '%';
+            splitHandle.style.left = percent + '%';
+        }
+
+        if(sliderContainer) {
+            const downEvent = (e) => {
+                isDragging = true;
+                sliderContainer.classList.remove('animating'); // interrupt any animation
+            };
+            const moveEvent = (e) => {
+                if (!isDragging) return;
+                e.preventDefault(); // prevent scrolling while dragging
+                const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+                moveSplit(clientX);
+            };
+            const upEvent = () => {
+                isDragging = false;
+            };
+
+            sliderContainer.addEventListener('mousedown', downEvent);
+            sliderContainer.addEventListener('touchstart', downEvent, {passive: false});
+            
+            window.addEventListener('mousemove', moveEvent, {passive: false});
+            window.addEventListener('touchmove', moveEvent, {passive: false});
+            
+            window.addEventListener('mouseup', upEvent);
+            window.addEventListener('touchend', upEvent);
+        }
+
+        // Navbar Scroll & Active Link Detection
+        const navbar = document.getElementById('navbar');
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        window.addEventListener('scroll', () => {
+            // Navbar background transition
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Active nav links based on scroll - removed for multi-page setup
+            
+            // Scroll to top button logic
+            const scrollTopBtn = document.getElementById('scrollTop');
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        // Scroll to Top action
+        document.getElementById('scrollTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Product Card Toggle Logic
+        const toggleButtons = document.querySelectorAll('.toggle-base-btn');
+        toggleButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation(); // prevent triggering other clicks if any
+                const imgWrap = btn.closest('.img-wrap');
+                imgWrap.classList.toggle('show-base');
+                btn.classList.toggle('active');
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const fadeUpElements = document.querySelectorAll('.fade-up');
+        const observerOptions = {
+            root: null,
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        
+        const fadeInObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        fadeUpElements.forEach(el => fadeInObserver.observe(el));
+
+        // Mobile Menu Logic
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const overlay = document.getElementById('overlay');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('open');
+            overlay.classList.toggle('open');
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+    </script>
+</body>
+</html>
